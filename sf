@@ -1,0 +1,31 @@
+#!/bin/bash
+
+build_tags() {
+    cscope-indexer -r
+    ctags --languages=c --langmap=c:.c.h --fields=+S -R .
+}
+
+remove_tags() {
+    filelist="cscope.out cscope.out.in cscope.out.po cscope.files tags"
+    for file in $filelist
+    do
+        if [ -f ".$file" ]; then
+            rm -f ".$file"
+        fi
+    done
+}
+
+rename_tags_file() {
+    filelist="cscope.out cscope.out.in cscope.out.po cscope.files tags"
+    for file in $filelist
+    do
+        if [ -f "$file" ]; then
+            mv $file ".$file"
+        fi
+    done
+}
+
+build_tags
+rename_tags_file
+
+
