@@ -25,7 +25,21 @@ rename_tags_file() {
     done
 }
 
-build_tags
-rename_tags_file
+main () {
+    if [ $# -eq 0 ]; then
+        build_tags
+        rename_tags_file
+    fi
 
+    if [ $# -eq 1 ]; then
+        case $1 in
+        "r"|"-r")
+            remove_tags
+        *)
+            echo "none"
+        esac
+    fi
+}
+
+main $@
 
