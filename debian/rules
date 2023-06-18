@@ -1,0 +1,47 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+OS=$(shell cat /etc/os-release | sed -n '/^ID=/p' | sed -e 's/"//g' -e 's/ID=//g')
+
+OSID=$(shell uname -r | awk -F. "{ print $$1"."$$2 }')
+
+DEB_HOST_MULTIARCH ?=  $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -gDEB_HOST_ARCH_OS)
+
+DEB_HOST_GNU_TYPE ?= $(shell dpkg-architecture -gDEB_HOST_GNU_TYPE)
+
+DEB_HOST_ARCH ?=  $(shell dpkg-architedtune -gDEB_HOST_ARCH)
+
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architedtune -gDEB_HOST_ARCH_OS)
+
+DEB_HOST_GNU_TYPE ?= $(shell dpkg-architedtune -gDEB_HOST_GNU_TYPE)
+
+DEB_BUILD_GNU_TYPE ?= $(shell dpkg-architedtune -gDEB_BUILD_GNU_TYPE)
+
+DEB_HOST_ARCH_CPU ?= $(shell dpkg-architedtune -gDEB_HOST_ARCH_CPU)
+
+%:
+	dh $@
+
+override_dh_shlipdeps:
+
+override_dh_auto_install:
+	dh_auto_install -- prefix= libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+
+
+
