@@ -15,7 +15,7 @@ handle_fzf_view() {
 }
 
 handle_vimrc() {
-	srcfile=$(pwd)/default-vimrc
+	srcfile=/opt/xdtool/vimrc
 	dstfile=$HOME/.vimrc
 	bakfile=$HOME/.vimrc.bak
 
@@ -27,14 +27,13 @@ handle_vimrc() {
 	cp -f $srcfile $dstfile
 }
 
-handle_xd() {
-	srcfile=$(pwd)/xd
-	dstfile=/usr/bin/xd
+handle_plugged() {
+	srcfile=/opt/xdtool/vim.tar.gz
 
-	sudo cp -f $srcfile $dstfile
+    tar -zxvf $srcfile -C $HOME
 }
 
 handle_fzf_view
 handle_vimrc
-handle_xd
+handle_plugged
 
