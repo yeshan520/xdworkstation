@@ -1,0 +1,12 @@
+Source: neverbetray-tool
+Section: devel
+Priority: extra
+Maintainer: liweifeng
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+
+Package: neverbetray-tool
+Architecture: any
+Depends: vim, exuberant-ctags, cscope, ripgrep, silversearcher-ag, tree
+Description: NeverBetray!
+

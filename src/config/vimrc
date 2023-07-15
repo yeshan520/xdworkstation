@@ -1,4 +1,4 @@
-" lwf
+" neverbetray
 
 set fileencodings=utf-8,uos-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
