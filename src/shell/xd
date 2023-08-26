@@ -34,9 +34,9 @@ main () {
     if [ $# -eq 1 ]; then
         case $1 in
         "r"|"-r")
-            remove_tags
+            remove_tags;;
         *)
-            echo "none"
+            echo "none";;
         esac
     fi
 }
