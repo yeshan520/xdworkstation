@@ -1,0 +1,254 @@
+" neverbetray
+
+set fileencodings=utf-8,uos-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+set showcmd
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set cursorline
+set ruler
+set nu
+set cmdheight=2
+set wildmenu
+set autoindent
+set smartindent
+set magic
+set noexpandtab
+set smarttab
+set cindent
+set autoread
+set autowrite
+set nobackup
+set noswapfile
+set gdefault
+set backspace=2
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+set scrolloff=2
+set completeopt=preview,menu
+set completeopt=longest,menu
+
+set guioptions-=T
+set guioptions-=m
+set foldcolumn=0
+set foldmethod=marker
+set foldlevel=3
+set foldenable
+set noeb
+set confirm
+
+syntax on
+
+if filereadable("/etc/vim/vimrc.local")
+    source /etc/vim/vimrc.local
+endif
+
+let mapleader=" "
+set norelativenumber
+set wrap
+
+exec "nohlsearch"
+
+set nocompatible
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+let &t_ut=''
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set list
+set listchars=tab:▸\ ,trail:▫
+set scrolloff=5
+set tw=0
+set indentexpr=
+set backspace=indent,eol,start
+set foldmethod=indent
+set foldlevel=99
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+set laststatus=2
+set autochdir
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+noremap = nzz
+noremap - Nzz
+noremap <LEADER><CR> :nohlsearch<CR>
+
+"noremap i k
+"noremap k j
+"noremap j h
+"noremap l l
+"noremap I 5k
+"noremap K 5j
+"noremap J 5h
+"noremap L 5l
+"noremap h i
+
+map s <nop>
+map S :w<CR>
+map Q :q<CR>
+map R :source $MYVIMRC<CR>
+
+map w<up> :set nosplitbelow<CR>:split<CR>
+map w<down> :set splitbelow<CR>:split<CR>
+map w<left> :set nosplitright<CR>:vsplit<CR>
+map w<right> :set splitright<CR>:vsplit<CR>
+map wk <C-w>t<C-w>K
+map wh <C-w>t<C-w>H
+map wq <C-w>q
+
+map <LEADER><up> <C-w>k
+map <LEADER><down> <C-w>j
+map <LEADER><left> <C-w>h
+map <LEADER><right> <C-w>l
+
+"map <up> :res +5<CR>
+"map <down> :res -5<CR>
+"map <left> :vertical resize-5<CR>
+"map <right> :vertical resize+5<CR>
+
+map ta :tabe<CR>
+map tn :-tabnext<CR>
+map tp :+tabnext<CR>
+
+" cscope
+set tags=.tags
+set cscopetag
+set csprg=cscope
+set csto=0
+set cst
+
+if filereadable(".cscope.out")
+    cs add .cscope.out
+endif
+set csverb
+
+nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>cs :cs f g
+nmap <leader>lc :setlocal list<CR> :set listchars=tab:>-,trail:.<CR>
+
+map <leader>o :Files<CR>
+map <leader>r :Rg<CR>
+
+let g:c_space_errors = 1
+let g:c_gnu_ = 1
+let g:c_no_cformat = 1
+let g:c_no_curly_error = 1
+
+if exists('g:c_comment_strings')
+    unlet g:c_comment_strings
+endif
+
+set nocompatible
+filetype off
+
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'connorholyday/vim-snazzy'
+
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'SirVer/ultisnips'
+Plug 'maralla/completor.vim'
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+Plug 'jingmiao/auto-pairs'
+Plug 'VundleVim/Vundle.vim'
+
+
+" File navigation
+"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Taglist
+"Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
+
+" Error checking
+"Plug 'w0rp/ale'
+
+" Auto Complete
+"Plug 'Valloric/YouCompleteMe'
+
+" Undo Tree
+"Plug 'mbbill/undotree/'
+
+" Other visual enhancement
+"Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'itchyny/vim-cursorword'
+
+" Git
+"Plug 'rhysd/conflict-marker.vim'
+"Plug 'tpope/vim-fugitive'
+"Plug 'mhinz/vim-signify'
+"Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
+
+" HTML, CSS, JavaScript, PHP, JSON, etc.
+"Plug 'elzr/vim-json'
+"Plug 'hail2u/vim-css3-syntax'
+"Plug 'spf13/PIV', { 'for' :['php', 'vim-plug'] }
+"Plug 'gko/vim-coloresque', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+"Plug 'pangloss/vim-javascript', { 'for' :['javascript', 'vim-plug'] }
+"Plug 'mattn/emmet-vim'
+
+" Python
+"Plug 'vim-scripts/indentpython.vim'
+
+" Markdown
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
+"Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+"Plug 'vimwiki/vimwiki'
+
+" Bookmarks
+"Plug 'kshenoy/vim-signature'
+
+" Other useful utilities
+"Plug 'terryma/vim-multiple-cursors'
+"Plug 'junegunn/goyo.vim' " distraction free writing mode
+"Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+"Plug 'godlygeek/tabular' " type ;Tabularize /= to align the =
+"Plug 'gcmt/wildfire.vim' " in Visual mode, type i' to select all text in '', or type i) i] i} ip
+"Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
+
+" Dependencies
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'kana/vim-textobj-user'
+"Plug 'fadein/vim-FIGlet'
+call plug#end()
+
+
+"ariline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"snippets
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipJumpForwardTrigger = "<c-b>"
+let g:UltiSnipJumpBackwardTrigger = "<c-z>"
+
+color snazzy
+let g:SnazzyTransparent = 1
+
+
+set t_Co=256
+set bg=dark
+colo gruvbox
+
