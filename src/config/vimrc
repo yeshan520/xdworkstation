@@ -1,29 +1,56 @@
 " neverbetray
 
-set fileencodings=utf-8,uos-bom,gb18030,gbk,gb2312,cp936
-set termencoding=utf-8
-set encoding=utf-8
+set nocompatible
+set autoread
+set shortmess=atI
 
+set magic
+set title
+set nobackup
+
+""" VIM编码设置
+set encoding=utf-8
+set fileencodings=utf-8,uos-bom,gb18030,gbk,gb2312,cp936
+set fileformats=unix,dos,mac
+set termencoding=utf-8
+set formatoptions+=m
+set formatoptions+=B
+
+""" VIM显示设置
+set ruler
+set number
+"set nowrap
 set showcmd
+set showmode
 set showmatch
+set matchtime=2
+
+""" VIM查找设置
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+""" VIM tab 制表符设置
+set expandtab
+set smarttab
+set shiftround
+
+""" VIM缩进配置
+set autoindent smartindent shiftround
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+
+""" 光标设置
+set cursorcolumn
 set cursorline
-set ruler
-set nu
+
 set cmdheight=2
 set wildmenu
-set autoindent
-set smartindent
-set magic
 set noexpandtab
-set smarttab
 set cindent
-set autoread
 set autowrite
-set nobackup
 set noswapfile
 set gdefault
 set backspace=2
@@ -53,16 +80,11 @@ set wrap
 
 exec "nohlsearch"
 
-set nocompatible
 filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on
 let &t_ut=''
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 set list
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5
@@ -75,7 +97,10 @@ let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 set laststatus=2
-set autochdir
+
+""" 自动设置当前目录，会导致cscope找不到文件
+"set autochdir
+"set cscoperelative
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 noremap = nzz
@@ -139,7 +164,7 @@ nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>cs :cs f g
+nmap <leader>cs :cs f g 
 nmap <leader>lc :setlocal list<CR> :set listchars=tab:>-,trail:.<CR>
 
 map <leader>o :Files<CR>
